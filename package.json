@@ -2,12 +2,19 @@
   "name": "ecommerce-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/server.js",
   "scripts": {
+    "start": "node src/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "mongodb": "^6.21.0",
+    "mongoose": "^8.22.0"
+  }
 }
