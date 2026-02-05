@@ -15,7 +15,13 @@ exports.getProducts = async (req, res) => {
         }
 
         const products = await Product.find(filter);
-        res.json(products);
+        res.status(200).json({
+            status: 'success',
+            results: products.length,
+            data: {
+                products
+            }
+        });
 
     } catch (err) {
         res.status(400).json({
@@ -30,7 +36,12 @@ exports.getProductById = async (req, res) => {
     try {
         const product = await Product.findById(req.params.id);
         if (!product) return res.status(404).json({ message: 'Product not found' });
-        res.json(product);
+        res.status(200).json({
+            status: 'success',
+            data: {
+                product
+            }
+        });
     } catch (err) {
         res.status(400).json({
             status: 'fail',
@@ -43,7 +54,12 @@ exports.getProductById = async (req, res) => {
 exports.createProduct = async (req, res) => {
     try {
         const product = await Product.create(req.body);
-        res.status(201).json(product);
+        res.status(201).json({
+            status: 'success',
+            data: {
+                product
+            }
+        });
     } catch (err) {
         res.status(400).json({
             status: 'fail',
@@ -57,7 +73,12 @@ exports.updateProduct = async (req, res) => {
     try {
         const product = await Product.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!product) return res.status(404).json({ message: 'Product not found' });
-    res.json(product);
+    res.status(200).json({
+        status: 'success',
+        data: {
+            product
+        }
+    });
     } catch (err) {
         res.status(400).json({
             status: 'fail',
@@ -71,7 +92,11 @@ exports.deleteProduct = async (req, res) => {
     try{
         const product = await Product.findByIdAndDelete(req.params.id);
     if (!product) return res.status(404).json({ message: 'Product not found' });
-    res.json({ message: 'Product deleted' });
+    res.status(204).json({
+        status: 'success',
+        data: null,
+        message: 'Product deleted'
+    });
     } catch (err) {
         res.status(400).json({
             status: 'fail',

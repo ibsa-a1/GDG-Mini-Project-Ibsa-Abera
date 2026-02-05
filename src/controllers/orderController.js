@@ -29,7 +29,12 @@ exports.createOrder = async (req, res) => {
         cart.items = [];
         await cart.save();
 
-        res.status(201).json(order);
+        res.status(201).json({
+            status: 'success',
+            data: {
+                order
+            }
+        });
 
     } catch (err) {
         res.status(400).json({
@@ -42,7 +47,13 @@ exports.createOrder = async (req, res) => {
 exports.getOrders = async (req, res) => {
     try {
         const orders = await Order.find();
-        res.json(orders);
+        res.status(200).json({
+            status: 'success',
+            results: orders.length,
+            data: {
+                orders
+            }
+        });
 
     } catch (err) {
         res.status(400).json({
@@ -59,7 +70,12 @@ exports.getOrderById = async (req, res) => {
         if (!order)
             return res.status(404).json({ message: 'Order not found' });
 
-        res.json(order);
+        res.status(200).json({
+            status: 'success',
+            data: {
+                order
+            }
+        });
 
     } catch (err) {
         res.status(400).json({

@@ -11,7 +11,12 @@ exports.viewCart = async (req, res) => {
     try {
         const cart = await getCart();
         await cart.populate('items.product');
-        res.json(cart);
+        res.status(200).json({
+            status: 'success',
+            data: {
+                cart
+            }
+        });
     } catch (err) {
         res.status(400).json({
             status: 'fail',
@@ -38,7 +43,12 @@ exports.addToCart = async (req, res) => {
         else cart.items.push({ product: productId, quantity });
 
         await cart.save();
-        res.status(201).json(cart);
+        res.status(201).json({
+            status: 'success',
+            data: {
+                cart
+            }
+        });
 
     } catch (err) {
         res.status(400).json({
@@ -71,7 +81,12 @@ exports.updateCartItem = async (req, res) => {
         item.quantity = quantity;
         await cart.save();
 
-        res.json(cart);
+        res.status(200).json({
+            status: 'success',
+            data: {
+                cart
+            }
+        });
 
     } catch (err) {
         res.status(400).json({
@@ -88,7 +103,12 @@ exports.removeFromCart = async (req, res) => {
             i => !i.product.equals(req.params.productId)
         );
         await cart.save();
-        res.json(cart);
+        res.status(200).json({
+            status: 'success',
+            data: {
+                cart
+            }
+        });
 
     } catch (err) {
         res.status(400).json({
