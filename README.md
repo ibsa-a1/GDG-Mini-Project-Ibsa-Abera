@@ -9,6 +9,62 @@ The backend follows REST principles and is implemented using **Node.js**, **Expr
 
 ---
 
+## Installation & Setup
+
+Follow these steps to run the project locally:
+
+```
+1. Clone the repository
+git clone <your-repository-url>
+
+2. Navigate into the project folder
+cd ecommerce-backend
+
+3. Install dependencies
+npm install
+
+4. Create a .env file in the root directory and add:
+DB_USER= your user name
+DB_PASSWORD=Your Password
+DB_HOST=The Host Name
+DB_NAME=The DataBase name in your MongoDB Atlas
+PORT=5000
+
+5. Start the server
+npm run dev
+```
+
+The server will run at:
+
+```
+http://localhost:5000
+```
+
+You can now test all endpoints using Postman.
+
+---
+
+## Environment Variables
+
+The application uses environment variables for configuration.
+
+Create a `.env` file in the root directory and define:
+
+```
+MONGO_URI = MongoDB Atlas connection string
+PORT = server port (default: 5000)
+```
+
+Example:
+
+```
+MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/ecommerce
+PORT=5000
+```
+
+⚠️ Never commit your `.env` file to GitHub.
+
+
 ## Base URL
 
 `http://localhost:5000`
